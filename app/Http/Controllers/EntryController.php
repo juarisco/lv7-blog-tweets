@@ -34,4 +34,8 @@ class EntryController extends Controller
         $status = 'Your entry has been published successfully.';
         return back()->with(compact('status'));
     }
+
+    public function show()
+    {
+    }
 }

@@ -10,7 +10,7 @@ class GuestController extends Controller
     public function index()
     {
         return view('welcome', [
-            'entries' => Entry::all()
+            'entries' => Entry::with('author')->latest()->paginate(10)
         ]);
     }
 }
