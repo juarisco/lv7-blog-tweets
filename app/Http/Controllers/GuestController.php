@@ -13,4 +13,9 @@ class GuestController extends Controller
             'entries' => Entry::with('author')->latest()->paginate(10)
         ]);
     }
+
+    public function show(Entry $entry)
+    {
+        return view('entries.show', compact('entry'));
+    }
 }

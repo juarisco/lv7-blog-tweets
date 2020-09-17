@@ -38,4 +38,27 @@ class EntryController extends Controller
     public function show()
     {
     }
+
+    public function edit(Entry $entry)
+    {
+        return view('entries.edit', compact('entry'));
+    }
+
+    public function update(Request $request, Entry $entry)
+    {
+        // return $request;
+        $validatedData = $request->validate([
+            'title' => 'required|min:7|max:255|unique:entries,id,' . $entry->id,
+            'content' => 'required|min:25|max:3000'
+        ]);
+
+        // TODO: allow action only for the author
+        $entry->title = $validatedData['title'];
+        $entry->content = $validatedData['content'];
+        $entry->user_id = auth()->id();
+        $entry->save(); // Update
+
+        $status = 'Your entry has been updated successfully.';
+        return back()->with(compact('status'));
+    }
 }
