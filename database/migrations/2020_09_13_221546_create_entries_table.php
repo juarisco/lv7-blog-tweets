@@ -22,6 +22,9 @@ class CreateEntriesTable extends Migration
             // author
             $table->foreignId('user_id')->constrained();
 
+            // slug
+            $table->string('slug');
+
             $table->timestamps();
         });
     }

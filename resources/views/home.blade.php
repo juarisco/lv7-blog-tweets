@@ -18,7 +18,7 @@
                     <ul>
                         @foreach ($entries as $entry)
                             <li>
-                                <a href="{{ route('guest.entry.show', $entry->id) }}">
+                                <a href="{{ $entry->path() }}">
                                     {{ $entry->title }}
                                 </a>
                             </li>
